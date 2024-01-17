@@ -68,12 +68,16 @@ const PhoneLogin = () => {
       .auth()
       .signInWithCredential(credential)
       .then((result) => {
+        const user = result.user;
+        console.log({user});
+        
         setCode("");
       })
       .catch((error) => {
         alert(error);
       });
     Alert.alert("Success ✅", "Phone authentication successful!");
+    
     setIsVerificationSent(false);
   };
   const [isFocused, setIsFocused] = useState(false);

@@ -12,7 +12,9 @@ import IconButton from "./components/ui/IconButton";
 import AppLoading from "expo-app-loading";
 import Otp from "./screens/PhoneScreen";
 import LoginOptionScreen from "./screens/LoginOptionScreen";
-import CategoryOverScreen from "./screens/CategoryOverviewScreen";
+import CategoriesScreen from "./screens/CategoryOverviewScreen";
+import { CategoryProvider } from "./CategoryContext";
+import MealsOverviewScreen from "./screens/MealOverview";
 
 const Stack = createNativeStackNavigator();
 
@@ -25,7 +27,7 @@ function AuthStack() {
         contentStyle: { backgroundColor: Colors.primary100 },
       }}
     >
-      <Stack.Screen name ="CategoryOverView" component={CategoryOverScreen} />
+<Stack.Screen name ="CategoriesScreen" component={CategoriesScreen} />
       <Stack.Screen name ="LoginOption" component={LoginOptionScreen} />
       <Stack.Screen name = "Otp" component={Otp} />
       <Stack.Screen name="Login" component={LoginScreen} />
@@ -44,9 +46,11 @@ function AuthenticatedStack() {
         contentStyle: { backgroundColor: Colors.primary100 },
       }}
     >
+      
+      <Stack.Screen name ="CategoriesScreen" component={CategoriesScreen} />
       <Stack.Screen
-        name="Welcome"
-        component={WelcomeScreen}
+        name="MealOverViewScreen"
+        component={MealsOverviewScreen}
         options={{
           headerRight: ({ tintColor }) => (
             <IconButton
@@ -101,8 +105,11 @@ export default function App() {
     <>
       <StatusBar style="light" />
       <AuthContextProvider>
+        <CategoryProvider>
         <Root /> 
+        </CategoryProvider>
       </AuthContextProvider>
+
     </>
   );
 }
