@@ -2,6 +2,7 @@
 
 ## Requirement
 
+* Contact Developer for **config.js** which contains the Api Key and everything
 * node 
 [Download Link](https://nodejs.org/en/download)
 * npm
@@ -10,6 +11,9 @@
 
 
 ## Setup
+
+* **Copy the config.js got from the developer to the root folder**
+
 * Step 1
 
 ```
