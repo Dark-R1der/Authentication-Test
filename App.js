@@ -27,9 +27,9 @@ function AuthStack() {
         contentStyle: { backgroundColor: Colors.primary100 },
       }}
     >
-<Stack.Screen name ="CategoriesScreen" component={CategoriesScreen} />
-      <Stack.Screen name ="LoginOption" component={LoginOptionScreen} />
-      <Stack.Screen name = "Otp" component={Otp} />
+      <Stack.Screen name="CategoriesScreen" component={CategoriesScreen} />
+      <Stack.Screen name="LoginOption" component={LoginOptionScreen} />
+      <Stack.Screen name="Otp" component={Otp} />
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="Signup" component={SignupScreen} />
     </Stack.Navigator>
@@ -40,14 +40,14 @@ function AuthenticatedStack() {
   const authCtx = useContext(AuthContext);
   return (
     <Stack.Navigator
+      initialRouteName="MealOverViewScreen"
       screenOptions={{
         headerStyle: { backgroundColor: Colors.primary500 },
         headerTintColor: "white",
         contentStyle: { backgroundColor: Colors.primary100 },
       }}
     >
-      
-      <Stack.Screen name ="CategoriesScreen" component={CategoriesScreen} />
+      <Stack.Screen name="CategoriesScreen" component={CategoriesScreen} />
       <Stack.Screen
         name="MealOverViewScreen"
         component={MealsOverviewScreen}
@@ -79,23 +79,22 @@ function Navigation() {
 
 function Root() {
   const [isTryingLogin, setIsTryingLogin] = useState(true);
-  const authCtx = useContext(AuthContext); 
+  const authCtx = useContext(AuthContext);
 
   useEffect(() => {
     async function fetchToken() {
       const storedToken = await AsyncStorage.getItem("token");
 
       if (storedToken) {
-        authCtx.authenticate(storedToken);  
-        // setAuthToken(storedToken);
+        authCtx.authenticate(storedToken);
       }
 
       setIsTryingLogin(false);
     }
     fetchToken();
   });
-  if(isTryingLogin){
-    return <AppLoading />
+  if (isTryingLogin) {
+    return <AppLoading />;
   }
   return <Navigation />;
 }
@@ -106,10 +105,9 @@ export default function App() {
       <StatusBar style="light" />
       <AuthContextProvider>
         <CategoryProvider>
-        <Root /> 
+          <Root />
         </CategoryProvider>
       </AuthContextProvider>
-
     </>
   );
 }
